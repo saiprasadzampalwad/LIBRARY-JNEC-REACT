@@ -23,5 +23,9 @@
 2. [ ] git add/commit
 3. [ ] Test git add . (no warnings)
 
+## Git Account Removal
+1. [x] Removed remote origin (previously https://github.com/saiprasadzampalwad/LIBRARY-JNEC-REACT.git)
+2. [x] Unset local/global git config user.name and user.email
+
 **Next: Test app: npm run dev**
 
