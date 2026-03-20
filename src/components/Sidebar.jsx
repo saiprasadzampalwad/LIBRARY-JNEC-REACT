@@ -21,10 +21,11 @@ const Sidebar = () => {
         <li><a href="#" style={{color: '#000'}}>New Arrivals- Books</a></li>
         <li><Link to="/feedback" style={{color: '#000'}}>Library Feedback Form</Link></li>
         <li><Link to="/journals" style={{color: '#000'}}>New Arrivals- Journals</Link></li>
-        <li><a href="#" style={{color: '#000'}}>Preparation-Question Paper's</a></li>
+        <li><Link to="/question-papers" style={{color: '#000'}}>Preparation-Question Paper's</Link></li>
         <li><a href="#" style={{color: '#000'}}>List of Book CDs</a></li>
-        <li><a href="#" style={{color: '#000'}}>FAQ's about Library</a></li>
+        <li><Link to="/faq" style={{color: '#000'}}>FAQ's about Library</Link></li>
         <li><Link to="/gallery" style={{color: '#000'}}>Image Gallery</Link></li>
+        <li><Link to="/e-resources" style={{color: '#000'}}>E-Resources</Link></li>
       </ul>
       <hr />
     </div>

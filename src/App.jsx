@@ -13,6 +13,9 @@ import PhotoGalleryPage from './pages/PhotoGalleryPage';
 import JournalsPage from './pages/JournalsPage';
 import AboutPage from './pages/AboutPage';
 import FeedbackPage from './pages/FeedbackPage';
+import EResourcesPage from './pages/EResourcesPage';
+import FAQPage from './pages/FAQPage';
+import QuestionPapersPage from './pages/QuestionPapersPage';
 import './App.css';
 
 function App() {
@@ -42,6 +45,9 @@ function App() {
       <Route path="/journals" element={<JournalsPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/feedback" element={<FeedbackPage />} />
+      <Route path="/e-resources" element={<EResourcesPage />} />
+      <Route path="/faq" element={<FAQPage />} />
+      <Route path="/question-papers" element={<QuestionPapersPage />} />
     </Routes>
   );
 }

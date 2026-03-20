@@ -90,15 +90,16 @@ const UlfsPage = () => {
   ];
 
   const quickLinks = [
-    { name: 'Open Education Resource', url: 'https://library.jnec.org/e-resources.php' },
+    { name: 'Open Education Resource', url: '/e-resources' },
     { name: 'Ask A LibrarianService', url: 'http://www.123contactform.com/form-1637444/Contact-Lead-Form' },
     { name: 'New Arrivals- Books', url: 'new_arrival_books.php' },
     { name: 'Library Feedback Form', url: '/feedback' },
     { name: 'New Arrivals- Journals', url: '/journals' },
-{ name: "Preparation-Question Paper's", url: 'question_papers.php' },
+{ name: "Preparation-Question Paper's", url: '/question-papers' },
 { name: 'List of Book CDs', url: 'data_pdf/books cds record.pdf' },
-    { name: "FAQ's about Library", url: 'faq.php' },
-{ name: 'Image Gallery', url: '/gallery' }
+{ name: "FAQ's about Library", url: '/faq' },
+  { name: 'Image Gallery', url: '/gallery' }
+ 
   ];
 
   const renderLinks = (links) => (
