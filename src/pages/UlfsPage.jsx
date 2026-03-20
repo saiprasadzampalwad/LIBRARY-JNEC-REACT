@@ -164,7 +164,7 @@ const UlfsPage = () => {
             <hr />
             <div className="text-center">
               <img 
-                src="/images/GO-Green-planet.jpg" 
+src="/images/GO-Green-planet.jpg"
                 alt="GO Green" 
                 style={{ boxShadow: '2px 2px 12px #606060', maxWidth: '100%' }} 
               />
