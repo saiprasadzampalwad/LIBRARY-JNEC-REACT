@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import UlfsPage from './pages/UlfsPage';
 import PhotoGalleryPage from './pages/PhotoGalleryPage';
 import JournalsPage from './pages/JournalsPage';
+import AboutPage from './pages/AboutPage';
 import './App.css';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Route path="/ulfs" element={<UlfsPage />} />
       <Route path="/gallery" element={<PhotoGalleryPage />} />
       <Route path="/journals" element={<JournalsPage />} />
+      <Route path="/about" element={<AboutPage />} />
     </Routes>
   );
 }
