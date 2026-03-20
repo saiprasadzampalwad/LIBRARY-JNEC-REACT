@@ -19,7 +19,7 @@ const Sidebar = () => {
         <li><a href="#" style={{color: '#000'}}>E - News Papers</a></li>
         <li><a href="#" style={{color: '#000'}}>Ask A LibrarianService</a></li>
         <li><a href="#" style={{color: '#000'}}>New Arrivals- Books</a></li>
-        <li><a href="#" style={{color: '#000'}}>Library Feedback Form</a></li>
+        <li><Link to="/feedback" style={{color: '#000'}}>Library Feedback Form</Link></li>
         <li><Link to="/journals" style={{color: '#000'}}>New Arrivals- Journals</Link></li>
         <li><a href="#" style={{color: '#000'}}>Preparation-Question Paper's</a></li>
         <li><a href="#" style={{color: '#000'}}>List of Book CDs</a></li>

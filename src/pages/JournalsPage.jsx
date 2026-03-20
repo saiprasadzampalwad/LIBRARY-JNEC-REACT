@@ -8,7 +8,7 @@ const quickLinks = [
   { label: "Open Education Resource", to: "#" },
   { label: "Ask A Librarian Service", to: "#" },
   { label: "New Arrivals- Books", to: "#" },
-  { label: "Library Feedback Form", to: "#" },
+  { label: "Library Feedback Form", to: "/feedback" },
   { label: "New Arrivals- Journals", to: "/journals" },
   { label: "Preparation-Question Paper's", to: "#" },
   { label: "List of Book CDs", to: "#" },

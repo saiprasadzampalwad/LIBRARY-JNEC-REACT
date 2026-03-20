@@ -93,12 +93,12 @@ const UlfsPage = () => {
     { name: 'Open Education Resource', url: 'https://library.jnec.org/e-resources.php' },
     { name: 'Ask A LibrarianService', url: 'http://www.123contactform.com/form-1637444/Contact-Lead-Form' },
     { name: 'New Arrivals- Books', url: 'new_arrival_books.php' },
-    { name: 'Library Feedback Form', url: 'https://docs.google.com/forms/d/e/1FAIpQLSf-BBgsr9iXtJbZAkqV_X-dPrleTYuoyftLHnYmg7O3TWN9tw/viewform' },
-    { name: 'New Arrivals- Journals', url: 'new_arrival_journals.php' },
+    { name: 'Library Feedback Form', url: '/feedback' },
+    { name: 'New Arrivals- Journals', url: '/journals' },
 { name: "Preparation-Question Paper's", url: 'question_papers.php' },
 { name: 'List of Book CDs', url: 'data_pdf/books cds record.pdf' },
     { name: "FAQ's about Library", url: 'faq.php' },
-    { name: 'Image Gallery', url: 'img_gallery.php' },
+{ name: 'Image Gallery', url: '/gallery' }
   ];
 
   const renderLinks = (links) => (

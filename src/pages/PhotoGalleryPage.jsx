@@ -1,44 +1,33 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
 import Footer from "../components/Footer";
 
-import img1 from "../assets/1.jfif";
-import img2 from "../assets/2.jfif";
-import img3 from "../assets/3.jpg";
-import img4 from "../assets/4.jfif";
-import img5 from "../assets/5.jfif";
-import img6 from "../assets/6.jfif";
-import img7 from "../assets/7.jfif";
-import img8 from "../assets/8.jfif";
-import img9 from "../assets/9.jfif";
-import img10 from "../assets/10.jfif";
-import img11 from "../assets/11.jfif";
-
 const quickLinks = [
-  "Open Education Resource",
-  "Ask A Librarian Service",
-  "New Arrivals- Books",
-  "Library Feedback Form",
-  "New Arrivals- Journals",
-  "Preparation-Question Paper's",
-  "List of Book CDs",
-  "FAQ's about Library",
-  "Image Gallery",
+  { label: "Open Education Resource", to: "#" },
+  { label: "Ask A Librarian Service", to: "#" },
+  { label: "New Arrivals- Books", to: "#" },
+  { label: "Library Feedback Form", to: "/feedback" },
+  { label: "New Arrivals- Journals", to: "/journals" },
+  { label: "Preparation-Question Paper's", to: "#" },
+  { label: "List of Book CDs", to: "#" },
+  { label: "FAQ's about Library", to: "#" },
+  { label: "Image Gallery", to: "/gallery" },
 ];
 
 const galleryImages = [
-  { label: "Reading Hall", src: img1 },
-  { label: "Main Library Floor", src: img2 },
-  { label: "Staff Group Photo", src: img3 },
-  { label: "Study Area", src: img4 },
-  { label: "Lounge Seating", src: img5 },
-  { label: "Book Stacks", src: img6 },
-  { label: "Library Aisle", src: img7 },
-  { label: "Reading Section", src: img8 },
-  { label: "Colorful Shelves", src: img9 },
-  { label: "Library Entrance", src: img10 },
-  { label: "Building Exterior", src: img11 },
+  { label: "Reading Hall", src: "/1.jfif" },
+  { label: "Main Library Floor", src: "/2.jfif" },
+  { label: "Staff Group Photo", src: "/3.jpg" },
+  { label: "Study Area", src: "/4.jfif" },
+  { label: "Lounge Seating", src: "/5.jfif" },
+  { label: "Book Stacks", src: "/6.jfif" },
+  { label: "Library Aisle", src: "/7.jfif" },
+  { label: "Reading Section", src: "/8.jfif" },
+  { label: "Colorful Shelves", src: "/9.jfif" },
+  { label: "Library Entrance", src: "/10.jfif" },
+  { label: "Building Exterior", src: "/11.jfif" },
 ];
 
 function GalleryThumb({ img }) {
@@ -175,8 +164,8 @@ export default function PhotoGalleryPage() {
                   >
                     •
                   </span>
-                  <a
-                    href="#"
+                  <Link
+                    to={link.to}
                     style={{
                       color: "#222",
                       fontSize: 12,
@@ -186,8 +175,8 @@ export default function PhotoGalleryPage() {
                     onMouseEnter={(e) => (e.target.style.color = "#8B3A00")}
                     onMouseLeave={(e) => (e.target.style.color = "#222")}
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

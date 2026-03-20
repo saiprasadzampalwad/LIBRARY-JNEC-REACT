@@ -12,6 +12,7 @@ import UlfsPage from './pages/UlfsPage';
 import PhotoGalleryPage from './pages/PhotoGalleryPage';
 import JournalsPage from './pages/JournalsPage';
 import AboutPage from './pages/AboutPage';
+import FeedbackPage from './pages/FeedbackPage';
 import './App.css';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Route path="/gallery" element={<PhotoGalleryPage />} />
       <Route path="/journals" element={<JournalsPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/feedback" element={<FeedbackPage />} />
     </Routes>
   );
 }
