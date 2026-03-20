@@ -20,11 +20,11 @@ const Sidebar = () => {
         <li><a href="#" style={{color: '#000'}}>Ask A LibrarianService</a></li>
         <li><a href="#" style={{color: '#000'}}>New Arrivals- Books</a></li>
         <li><a href="#" style={{color: '#000'}}>Library Feedback Form</a></li>
-        <li><a href="#" style={{color: '#000'}}>New Arrivals- Journals</a></li>
+        <li><Link to="/journals" style={{color: '#000'}}>New Arrivals- Journals</Link></li>
         <li><a href="#" style={{color: '#000'}}>Preparation-Question Paper's</a></li>
         <li><a href="#" style={{color: '#000'}}>List of Book CDs</a></li>
         <li><a href="#" style={{color: '#000'}}>FAQ's about Library</a></li>
-        <li><a href="#" style={{color: '#000'}}>Image Gallery</a></li>
+        <li><Link to="/gallery" style={{color: '#000'}}>Image Gallery</Link></li>
       </ul>
       <hr />
     </div>
