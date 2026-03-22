@@ -17,7 +17,7 @@ const Sidebar = () => {
       <ul style={{color: '#000', listStyleType: 'none', padding: 0}}>
         <li><Link to="/ulfs" style={{color: '#000'}}>Useful Links for Students</Link></li>
         <li><a href="#" style={{color: '#000'}}>E - News Papers</a></li>
-        <li><a href="#" style={{color: '#000'}}>Ask A LibrarianService</a></li>
+        <li><Link to="/ask-librarian" style={{color: '#000'}}>Ask A Librarian Service</Link></li>
         <li><a href="#" style={{color: '#000'}}>New Arrivals- Books</a></li>
         <li><Link to="/feedback" style={{color: '#000'}}>Library Feedback Form</Link></li>
         <li><Link to="/journals" style={{color: '#000'}}>New Arrivals- Journals</Link></li>
@@ -26,6 +26,7 @@ const Sidebar = () => {
         <li><Link to="/faq" style={{color: '#000'}}>FAQ's about Library</Link></li>
         <li><Link to="/gallery" style={{color: '#000'}}>Image Gallery</Link></li>
         <li><Link to="/e-resources" style={{color: '#000'}}>E-Resources</Link></li>
+        <li><Link to="/lib-rules" style={{color: '#000'}}>Lib Rules</Link></li>
       </ul>
       <hr />
     </div>
