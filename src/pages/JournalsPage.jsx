@@ -6,12 +6,12 @@ import Footer from "../components/Footer";
 
 const quickLinks = [
    { name: 'Open Education Resource', url: '/e-resources' },
-    { name: 'Ask A LibrarianService', url: 'http://www.123contactform.com/form-1637444/Contact-Lead-Form' },
+{ name: 'Ask A LibrarianService', url: '/ask-librarian' },
     { name: 'New Arrivals- Books', url: 'new_arrival_books.php' },
     { name: 'Library Feedback Form', url: '/feedback' },
     { name: 'New Arrivals- Journals', url: '/journals' },
 { name: "Preparation-Question Paper's", url: '/question-papers' },
-{ name: 'List of Book CDs', url: 'data_pdf/books cds record.pdf' },
+{ name: 'List of Book CDs', url: '/public/books cds record.pdf' },
     { name: "FAQ's about Library", url: '/faq' },
 { name: 'Image Gallery', url: '/gallery' }
  
@@ -137,15 +137,16 @@ export default function JournalsPage() {
                     gap: 5,
                   }}
                 >
-                  <span style={{ color: "#555", fontSize: 13, lineHeight: "17px", flexShrink: 0 }}>•</span>
+<span style={{ color: "#555", fontSize: 13, lineHeight: "17px", flexShrink: 0 }}>•</span>
                   <Link
-                    to={link.to}
+                    to={link.url}
                     style={{ color: "#222", fontSize: 12, textDecoration: "none", lineHeight: 1.35 }}
                     onMouseEnter={(e) => (e.target.style.color = "#8B3A00")}
                     onMouseLeave={(e) => (e.target.style.color = "#222")}
                   >
-                    {link.label}
+                    {link.name}
                   </Link>
+
                 </li>
               ))}
             </ul>

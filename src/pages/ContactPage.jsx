@@ -6,12 +6,12 @@ import Footer from '../components/Footer';
 
 const quickLinks = [
   { name: 'Open Education Resource', url: '/e-resources' },
-{ name: 'Ask A Librarian Service', url: 'http://www.123contactform.com/form-1637444/Contact-Lead-Form' },
+{ name: 'Ask A LibrarianService', url: '/ask-librarian' },
   { name: 'New Arrivals- Books', url: 'new_arrival_books.php' },
   { name: 'Library Feedback Form', url: '/feedback' },
   { name: 'New Arrivals- Journals', url: '/journals' },
   { name: "Preparation-Question Paper's", url: '/question-papers' },
-  { name: 'List of Book CDs', url: 'data_pdf/books cds record.pdf' },
+{ name: 'List of Book CDs', url: '/public/books cds record.pdf' },
   { name: "FAQ's about Library", url: '/faq' },
   { name: 'Image Gallery', url: '/gallery' }
 ];

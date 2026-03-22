@@ -20,6 +20,9 @@ import LibRulesPage from './pages/LibRulesPage';
 import ContactPage from './pages/ContactPage';
 import AskLibrarianPage from './pages/AskLibrarianPage';
 import ServicesPage from './pages/ServicesPage';
+import PrintResourcesPage from './pages/PrintResourcesPage';
+import ENewsPapersPage from './pages/ENewsPapersPage';
+import NewArrivalBooksPage from './pages/NewArrivalBooksPage';
 import './App.css';
 
 function App() {
@@ -56,6 +59,9 @@ function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/ask-librarian" element={<AskLibrarianPage />} />
       <Route path="/services" element={<ServicesPage />} />
+      <Route path="/print" element={<PrintResourcesPage />} />
+      <Route path="/e-news-papers" element={<ENewsPapersPage />} />
+      <Route path="/new-arrival-books" element={<NewArrivalBooksPage />} />
     </Routes>
   );
 }
