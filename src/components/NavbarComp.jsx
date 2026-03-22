@@ -16,6 +16,7 @@ const NavbarComp = () => {
             <NavLink to="/e-resources" className="nav-link"><strong>E- RESOURCES</strong></NavLink>
             <Nav.Link href="https://erp.mgmu.ac.in" target="_blank" rel="noopener noreferrer"><strong>OPAC</strong></Nav.Link>
 <NavLink to="/faq" className="nav-link"><strong>FAQ</strong></NavLink>
+            <NavLink to="/lib-rules" className="nav-link"><strong>LIB. RULES</strong></NavLink>
             <NavLink to="/contact" className="nav-link"><strong>CONTACT US</strong></NavLink>
           </Nav>
         </Navbar.Collapse>

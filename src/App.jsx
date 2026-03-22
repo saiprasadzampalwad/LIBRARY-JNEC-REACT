@@ -16,6 +16,10 @@ import FeedbackPage from './pages/FeedbackPage';
 import EResourcesPage from './pages/EResourcesPage';
 import FAQPage from './pages/FAQPage';
 import QuestionPapersPage from './pages/QuestionPapersPage';
+import LibRulesPage from './pages/LibRulesPage';
+import ContactPage from './pages/ContactPage';
+import AskLibrarianPage from './pages/AskLibrarianPage';
+import ServicesPage from './pages/ServicesPage';
 import './App.css';
 
 function App() {
@@ -48,6 +52,10 @@ function App() {
       <Route path="/e-resources" element={<EResourcesPage />} />
       <Route path="/faq" element={<FAQPage />} />
       <Route path="/question-papers" element={<QuestionPapersPage />} />
+      <Route path="/lib-rules" element={<LibRulesPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/ask-librarian" element={<AskLibrarianPage />} />
+      <Route path="/services" element={<ServicesPage />} />
     </Routes>
   );
 }
