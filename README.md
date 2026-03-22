@@ -47,7 +47,7 @@ This is the official web application for the **Central Library of Jawaharlal Neh
 
 ### Installation
 ```bash
-git clone <repository-url>
+git clone <https://github.com/saiprasadzampalwad/LIBRARY-JNEC-REACT/edit/main/README.md>
 cd library-jnec-react
 npm install
 ```
