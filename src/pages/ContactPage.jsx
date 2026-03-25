@@ -1,43 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
+import QuickLinks from '../components/QuickLinks';
+
 import Header from '../components/Header';
 import NavbarComp from '../components/NavbarComp';
 import Footer from '../components/Footer';
 
-const quickLinks = [
-  { name: 'Open Education Resource', url: '/e-resources' },
-{ name: 'Ask A LibrarianService', url: '/ask-librarian' },
-  { name: 'New Arrivals- Books', url: 'new_arrival_books.php' },
-  { name: 'Library Feedback Form', url: '/feedback' },
-  { name: 'New Arrivals- Journals', url: '/journals' },
-  { name: "Preparation-Question Paper's", url: '/question-papers' },
-{ name: 'List of Book CDs', url: '/public/books cds record.pdf' },
-  { name: "FAQ's about Library", url: '/faq' },
-  { name: 'Image Gallery', url: '/gallery' }
-];
-
 const ContactPage = () => {
-  const titleStyle = {
-    textAlign: "center",
-    padding: "20px 0",
-    fontSize: "28px",
-    fontWeight: "bold",
-    color: "#703c19",
-    backgroundColor: "#f8f4e8",
-    marginBottom: "20px",
-    borderBottom: "4px solid #703c19",
-    letterSpacing: "1px",
-    fontFamily: "'Georgia', serif"
-  };
-
-
-
   return (
     <>
       <Header />
       <NavbarComp />
-
-      <div style={titleStyle}>
+      
+      <div style={{
+        textAlign: "center",
+        padding: "20px 0",
+        fontSize: "28px",
+        fontWeight: "bold",
+        color: "#703c19",
+        backgroundColor: "#f8f4e8",
+        marginBottom: "20px",
+        borderBottom: "4px solid #703c19",
+        letterSpacing: "1px"
+      }}>
         CONTACT US
       </div>
 
@@ -51,52 +36,7 @@ const ContactPage = () => {
       }}>
         {/* Left Sidebar */}
         <div style={{ width: 195, flexShrink: 0 }}>
-          {/* Quick Links */}
-          <div
-            style={{
-              background: "#ede8db",
-              border: "1px solid #b8a888",
-              padding: "10px 14px 14px",
-              marginBottom: 16,
-            }}
-          >
-            <div
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "#8B3A00",
-                fontSize: 14,
-                marginBottom: 10,
-                textDecoration: "underline",
-              }}
-            >
-              QUICK LINKS
-            </div>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {quickLinks.map((link, i) => (
-                <li
-                  key={i}
-                  style={{
-                    marginBottom: 7,
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: 5,
-                  }}
-                >
-                  <span style={{ color: "#555", fontSize: 13, lineHeight: "17px", flexShrink: 0 }}>•</span>
-                  <a
-                    href={link.url}
-                    target={link.url.startsWith('http') ? '_blank' : '_self'}
-                    style={{ color: "#222", fontSize: 12, textDecoration: "none", lineHeight: 1.35 }}
-                    rel={link.url.startsWith('http') ? "noopener noreferrer" : undefined}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+          <QuickLinks />
           {/* Go Green */}
           <div
             style={{
@@ -134,6 +74,7 @@ const ContactPage = () => {
           </div>
         </div>
 
+
         {/* Main Content */}
         <div
           style={{
@@ -157,7 +98,7 @@ const ContactPage = () => {
             Central Library,<br />
             MGM Campus,<br />
             CIDCO N-6,<br />
-            Aurangabad - 431003<br />
+            Chhatrapati Sambhajinagar - 431003<br />
             <strong style={{ color: "#703c19" }}>Maharashtra (INDIA)</strong>
           </h3>
 
@@ -215,4 +156,3 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-

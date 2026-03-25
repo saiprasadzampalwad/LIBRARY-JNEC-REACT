@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Accordion, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import QuickLinks from "../components/QuickLinks";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
 import Footer from "../components/Footer";
@@ -69,7 +70,7 @@ const PrintResourcesPage = () => {
         "Control Systems - Nagrath & Gopal (130 copies)",
         "Digital Electronics - Morris Mano (120 copies)",
         "Circuit Theory - Hayt (100 copies)",
-        "Power Electronics - Rash id (95 copies)",
+        "Power Electronics - Rashid (95 copies)",
         "Measurements - Sawhney (90 copies)"
       ],
       "Chemical Engineering": [
@@ -113,26 +114,25 @@ const PrintResourcesPage = () => {
     ]
   };
 
-  const accessInfo = [
-    "Print resources available in Circulation and Reference sections.",
-    "Book bank for semester-long loans (2-3 books per student).",
-    "Total collection: 50,000+ books across all departments.",
-    "Contact library staff for reservations or recommendations."
+  const departmentTableData = [
+    { sr: 1, dept: 'Mech. Engg.', reqTitles: 1800, availTitles: 2702, reqVol: 9250, availVol: 12073 },
+    { sr: 2, dept: 'M. Tech. mfg', reqTitles: 160, availTitles: 162, reqVol: 472, availVol: 585 },
+    { sr: 3, dept: 'Chem. Engg.', reqTitles: 975, availTitles: 1135, reqVol: 5370, availVol: 5530 },
+    { sr: 4, dept: 'Civil Engg.', reqTitles: 1525, availTitles: 1781, reqVol: 7625, availVol: 9950 },
+    { sr: 5, dept: 'M. Tech. Stru.', reqTitles: 140, availTitles: 141, reqVol: 530, availVol: 549 },
+    { sr: 6, dept: 'CSE', reqTitles: 1525, availTitles: 2708, reqVol: 8050, availVol: 10829 },
+    { sr: 7, dept: 'M. Tech. CSE', reqTitles: 140, availTitles: 142, reqVol: 470, availVol: 617 },
+    { sr: 8, dept: 'ECT', reqTitles: 1750, availTitles: 2246, reqVol: 8725, availVol: 10521 },
+    { sr: 9, dept: 'M Tech. ECT', reqTitles: 136, availTitles: 136, reqVol: 830, availVol: 837 },
+    { sr: 10, dept: 'EE', reqTitles: 800, availTitles: 812, reqVol: 4000, availVol: 4270 },
+    { sr: 11, dept: 'M. Tech EPS', reqTitles: 130, availTitles: 137, reqVol: 440, availVol: 667 },
+    { sr: 12, dept: 'Info. Tech.', reqTitles: 915, availTitles: 1254, reqVol: 4565, availVol: 6286 },
+    { sr: 13, dept: 'B. Arch.', reqTitles: 1540, availTitles: 3127, reqVol: 4620, availVol: 4552 },
+    { sr: 14, dept: 'M. Arch.', reqTitles: 135, availTitles: 135, reqVol: 550, availVol: 550 },
+    { sr: 15, dept: 'MCA', reqTitles: 750, availTitles: 1236, reqVol: 7000, availVol: 7003 },
+    { sr: 16, dept: 'App. Sci.', reqTitles: 966, availTitles: 966, reqVol: 5156, availVol: 5156 },
+    { sr: '', dept: 'Total', reqTitles: 13387, availTitles: 18820, reqVol: 67653, availVol: 80240 }
   ];
-
-  const sectionStyle = {
-    marginBottom: "3rem",
-    padding: "2rem",
-    border: "1px solid #ddd",
-    borderRadius: "10px",
-    backgroundColor: "#f8f9fa",
-  };
-
-  const titleStyle = {
-    color: "#703c19",
-    fontWeight: "bold",
-    textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
-  };
 
   return (
     <>
@@ -140,91 +140,69 @@ const PrintResourcesPage = () => {
       <NavbarComp />
       <Container fluid style={{ boxShadow: '2px 2px 12px #606060', padding: '2rem 0', minHeight: '80vh' }}>
         <Row>
-          <Col lg={12}>
-            <h1 className="text-center mb-5" style={{ 
-              ...titleStyle, 
-              fontSize: '3rem', 
-            }}>
+          <Col lg={3}>
+            <QuickLinks />
+          </Col>
+          <Col lg={9}>
+            <h1 className="text-center mb-5" style={{ fontSize: '3rem', color: '#703c19', fontWeight: 'bold' }}>
               PRINT RESOURCES
             </h1>
-          </Col>
-        </Row>
+            
+            {/* Department Holdings Table */}
+            <Card style={{ marginBottom: '2rem', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+              <Card.Header style={{ backgroundColor: '#f8f9fa', borderBottom: '2px solid #703c19', textAlign: 'center' }}>
+                <h4 style={{ color: '#703c19', fontWeight: 'bold', margin: 0 }}>Department-wise Book Holdings</h4>
+              </Card.Header>
+              <Card.Body>
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+                    <thead>
+                      <tr style={{ backgroundColor: '#d9d9d9' }}>
+                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '60px' }}>Sr. No</th>
+                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'left', fontWeight: 'bold', minWidth: '140px' }}>Department</th>
+                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '130px' }}>Required Titles</th>
+                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '130px' }}>Available Titles</th>
+                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '140px' }}>Required Volumes</th>
+                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '140px' }}>Available Volumes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {departmentTableData.map((row, index) => (
+                        <tr key={index} style={{ backgroundColor: row.sr === '' ? '#e9ecef' : index % 2 === 0 ? '#f8f9fa' : 'white' }}>
+                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: row.sr === '' ? 'bold' : '500' }}>
+                            {row.sr || ''}
+                          </td>
+                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'left', fontWeight: row.sr === '' ? 'bold' : '500' }}>
+                            {row.dept}
+                          </td>
+                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center' }}>
+                            {row.reqTitles ? row.reqTitles.toLocaleString() : ''}
+                          </td>
+                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', color: '#28a745' }}>
+                            {row.availTitles ? row.availTitles.toLocaleString() : ''}
+                          </td>
+                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center' }}>
+                            {row.reqVol ? row.reqVol.toLocaleString() : ''}
+                          </td>
+                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', color: '#28a745' }}>
+                            {row.availVol ? row.availVol.toLocaleString() : ''}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card.Body>
+            </Card>
 
-        <Row className="justify-content-center">
-          <Col lg={11}>
-            <div style={sectionStyle}>
-              <h4 style={titleStyle}>Access Information</h4>
-              <ul>
-                {accessInfo.map((info, idx) => (
-                  <li key={idx} style={{ marginBottom: '0.5rem' }}>{info}</li>
-                ))}
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <h4 style={{ color: '#703c19', fontWeight: 'bold' }}>Access Information</h4>
+              <ul style={{ fontSize: '1.1rem', textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
+                <li>Print resources available in Circulation and Reference sections.</li>
+                <li>Book bank for semester-long loans (2-3 books per student).</li>
+                <li>Total collection: 50,000+ books across all departments.</li>
+                <li>Contact library staff for reservations or recommendations.</li>
               </ul>
-            </div>
-
-            {Object.entries(booksData).map(([category, categoryData], secIdx) => (
-              <div key={secIdx} style={sectionStyle}>
-                <h3 style={{ ...titleStyle, borderBottom: '3px solid #703c19', paddingBottom: '1rem' }}>
-                  {category}
-                </h3>
-                {Array.isArray(categoryData) ? (
-                  <ul style={{ fontSize: '1.1rem' }}>
-                    {categoryData.map((book, bIdx) => (
-                      <li key={bIdx} style={{ marginBottom: '0.8rem' }}>
-                        📚 {book}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  Object.entries(categoryData).map(([dept, books], dIdx) => (
-                    <div key={dIdx} style={{ marginBottom: '2rem' }}>
-                      <div 
-                        style={{
-                          background: "#d9d9d9",
-                          padding: "12px 16px",
-                          cursor: "pointer",
-                          fontSize: "16px",
-                          fontWeight: "bold",
-                          color: "#333",
-                          borderRadius: "4px",
-                          marginBottom: "8px",
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center"
-                        }}
-                        onClick={() => toggleCategory(`${category}-${dept}`)}
-                      >
-                        <span>{dept} ({books.length}+ books)</span>
-                        <span>{openKeys[`${category}-${dept}`] ? "▲" : "▼"}</span>
-                      </div>
-                      {openKeys[`${category}-${dept}`] && (
-                        <div style={{ 
-                          padding: "12px 16px", 
-                          background: "#f9f9f9", 
-                          borderTop: "1px solid #ddd",
-                          borderRadius: "0 0 4px 4px"
-                        }}>
-                          <ul style={{ fontSize: "14px" }}>
-                            {books.slice(0, 8).map((book, bkIdx) => (
-                              <li key={bkIdx}>{book}</li>
-                            ))}
-                            {books.length > 8 && (
-                              <li style={{ fontStyle: "italic", color: "#666" }}>
-                                ... and {books.length - 8} more titles
-                              </li>
-                            )}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  ))
-                )}
-              </div>
-            ))}
-
-            <div className="text-center mt-5">
-              <p style={{ fontSize: "1.1rem", color: "#666" }}>
-                Comprehensive print collection catalogued by department and subject. Visit library for complete access.
-              </p>
             </div>
           </Col>
         </Row>
@@ -233,6 +211,5 @@ const PrintResourcesPage = () => {
     </>
   );
 };
-
 export default PrintResourcesPage;
 
