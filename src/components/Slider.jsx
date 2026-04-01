@@ -9,22 +9,57 @@ const Slider = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="/images/newslide.jpg"
-            alt="First slide"
+            src="/10.jfif"
+            alt="Library Slider 10"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="/images/mgm_drawn.jpg"
-            alt="Second slide"
+            src="/1.jfif"
+            alt="Library Slider 1"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="/images/FoundationLibrary.jpg"
-            alt="Third slide"
+            src="/2.jfif"
+            alt="Library Slider 2"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/3.jpg"
+            alt="Library Slider 3"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/7.jfif"
+            alt="Library Slider 7"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/8.jfif"
+            alt="Library Slider 8"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/9.jfif"
+            alt="Library Slider 9"
+            style={{height: '100vh', width: '100%', objectFit: 'cover'}}
           />
         </Carousel.Item>
       </Carousel>
@@ -33,3 +68,4 @@ const Slider = () => {
 };
 
 export default Slider;
+

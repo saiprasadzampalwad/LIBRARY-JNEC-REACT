@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
 import QuickLinks from "../components/QuickLinks";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
@@ -134,6 +134,53 @@ const PrintResourcesPage = () => {
     { sr: '', dept: 'Total', reqTitles: 13387, availTitles: 18820, reqVol: 67653, availVol: 80240 }
   ];
 
+  const renderDropBox = (title, data, id) => (
+    <Card style={{ marginBottom: '1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+      <Card.Header 
+        style={{ 
+          backgroundColor: '#f8f9fa', 
+          cursor: 'pointer', 
+          padding: '12px 16px',
+          fontWeight: 'bold',
+          color: '#703c19',
+          borderBottom: '1px solid #dee2e6',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+        onClick={() => toggleCategory(id)}
+      >
+        {title} 📚
+        <span>{openKeys[id] ? '▲' : '▼'}</span>
+      </Card.Header>
+      {openKeys[id] && (
+        <Card.Body style={{ padding: '16px' }}>
+          {typeof data === 'object' && !Array.isArray(data) ? (
+            Object.entries(data).map(([dept, books]) => (
+              <div key={dept} style={{ marginBottom: '1.5rem', borderLeft: '3px solid #703c19', paddingLeft: '12px' }}>
+                <h6 style={{ color: '#703c19', marginBottom: '8px', fontWeight: 'bold' }}>
+                  {dept} ({books.length} titles)
+                </h6>
+                <ul style={{ fontSize: '14px', lineHeight: '1.5' }}>
+                  {books.slice(0, 10).map((book, idx) => (
+                    <li key={idx}>{book}</li>
+                  ))}
+                  {books.length > 10 && <li style={{ fontStyle: 'italic', color: '#666' }}>...</li>}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <ul style={{ fontSize: '14px', lineHeight: '1.5' }}>
+              {data.map((book, idx) => (
+                <li key={idx}>{book}</li>
+              ))}
+            </ul>
+          )}
+        </Card.Body>
+      )}
+    </Card>
+  );
+
   return (
     <>
       <Header />
@@ -195,7 +242,13 @@ const PrintResourcesPage = () => {
               </Card.Body>
             </Card>
 
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h4 style={{ color: '#703c19', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
+              Sample Book Titles (Click to Expand)
+            </h4>
+
+            {Object.entries(booksData).map(([mainCategory, data]) => renderDropBox(mainCategory, data, mainCategory.replace(/\\s/g, '')))}
+
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
               <h4 style={{ color: '#703c19', fontWeight: 'bold' }}>Access Information</h4>
               <ul style={{ fontSize: '1.1rem', textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
                 <li>Print resources available in Circulation and Reference sections.</li>
@@ -211,5 +264,5 @@ const PrintResourcesPage = () => {
     </>
   );
 };
-export default PrintResourcesPage;
 
+export default PrintResourcesPage;
