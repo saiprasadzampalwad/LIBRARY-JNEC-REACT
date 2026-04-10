@@ -82,19 +82,7 @@ const EResourcesPage = () => {
 
         <Row className="justify-content-center">
           <Col lg={11}>
-            {/* Access Information */}
-            <div style={sectionStyle}>
-              <h4 style={titleStyle}>Access Information</h4>
-              <Alert variant="info">
-                <ul>
-                  {accessInfo.map((info, idx) => (
-                    <li key={idx}>{info}</li>
-                  ))}
-                </ul>
-              </Alert>
-            </div>
-
-            {/* Resources Sections */}
+           {/* Resources Sections */}
             {resources.map((section, secIdx) => (
               <div key={secIdx} style={sectionStyle}>
                 <h3 style={{ ...titleStyle, borderBottom: '3px solid #703c19', paddingBottom: '1rem' }}>
@@ -124,7 +112,17 @@ const EResourcesPage = () => {
                 </Row>
               </div>
             ))}
-
+ {/* Access Information */}
+            <div style={sectionStyle}>
+              <h4 style={titleStyle}>Access Information</h4>
+              <Alert variant="info">
+                <ul>
+                  {accessInfo.map((info, idx) => (
+                    <li key={idx}>{info}</li>
+                  ))}
+                </ul>
+              </Alert>
+            </div>
             <div className="text-center mt-5">
               <p style={{ fontSize: '1.1rem', color: '#666' }}>
                 For more resources or assistance, contact library staff or visit the circulation desk.

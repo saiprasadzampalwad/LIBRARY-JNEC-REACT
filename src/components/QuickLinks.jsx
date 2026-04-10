@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const quickLinksData = [
   { name: 'Open Education Resource', url: '/e-resources' },
   { name: 'Ask A Librarian Service', url: '/ask-librarian' },
-  { name: 'New Arrivals- Books', url: '#' },
+{ name: 'New Arrivals- Books', url: '/new-arrival-books' },
   { name: 'Library Feedback Form', url: '/feedback' },
   { name: 'New Arrivals- Journals', url: '/journals' },
   { name: "Preparation-Question Paper's", url: '/question-papers' },

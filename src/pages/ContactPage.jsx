@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import QuickLinks from '../components/QuickLinks';
 
 import Header from '../components/Header';
 import NavbarComp from '../components/NavbarComp';
@@ -36,7 +35,6 @@ const ContactPage = () => {
       }}>
         {/* Left Sidebar */}
         <div style={{ width: 195, flexShrink: 0 }}>
-          <QuickLinks />
           {/* Go Green */}
           <div
             style={{

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
@@ -19,42 +18,25 @@ const quickLinks = [
 ];
 
 const QuestionPapersPage = () => {
-  const [openIndex, setOpenIndex] = useState(0);
-
-  const departments = [
-    { name: 'Computer Engineering', papers: [
-      { semester: 'SE Sem I', subject: 'Data Structures', year: '2023', link: '#' },
-      { semester: 'SE Sem II', subject: 'Computer Networks', year: '2023', link: '#' },
-      { semester: 'TE Sem V', subject: 'Machine Learning', year: '2023', link: '#' },
-      { semester: 'TE Sem VI', subject: 'Cloud Computing', year: '2023', link: '#' },
-      { semester: 'BE Sem VII', subject: 'Big Data Analytics', year: '2023', link: '#' },
-    ] },
-    { name: 'Information Technology', papers: [
-      { semester: 'SE Sem I', subject: 'Database Management', year: '2023', link: '#' },
-      { semester: 'TE Sem V', subject: 'Web Technology', year: '2023', link: '#' },
-    ] },
-    { name: 'Mechanical Engineering', papers: [
-      { semester: 'SE Sem II', subject: 'Strength of Materials', year: '2023', link: '#' },
-      { semester: 'SE Sem III', subject: 'Heat Transfer', year: '2023', link: '#' },
-      { semester: 'TE Sem V', subject: 'Design of Machine Elements', year: '2023', link: '#' },
-      { semester: 'BE Sem VII', subject: 'CAD/CAM', year: '2023', link: '#' },
-    ] },
-    { name: 'Civil Engineering', papers: [
-      { semester: 'SE Sem I', subject: 'Surveying', year: '2023', link: '#' },
-      { semester: 'TE Sem VI', subject: 'Design of Steel Structures', year: '2023', link: '#' },
-      { semester: 'BE Sem VIII', subject: 'Project Management', year: '2023', link: '#' },
-    ] },
-    { name: 'Electronics & Telecommunication', papers: [
-      { semester: 'SE Sem III', subject: 'Digital Electronics', year: '2023', link: '#' },
-      { semester: 'TE Sem V', subject: 'VLSI Design', year: '2023', link: '#' },
-    ] },
-    { name: 'Electrical Engineering', papers: [
-      { semester: 'SE Sem II', subject: 'Electrical Machines', year: '2023', link: '#' },
-      { semester: 'BE Sem VII', subject: 'Power System', year: '2023', link: '#' },
-    ] },
-    { name: 'Chemical Engineering', papers: [
-      { semester: 'TE Sem VI', subject: 'Process Design', year: '2023', link: '#' },
-    ] },
+  const papers = [
+    { filename: 'MGMU BARCH ALL JUNE 2022.pdf', dept: 'BARCH', sem: 'ALL', year: '2022' },
+    { filename: 'MGMU FY ALL JUNE 2022.pdf', dept: 'FY', sem: 'ALL', year: '2022' },
+    { filename: 'MGMU MARCH ALL JUNE 2022.pdf', dept: 'MARCH', sem: 'ALL', year: '2022' },
+    { filename: 'MGMU MCA ALL JUNE 2022.pdf', dept: 'MCA', sem: 'ALL', year: '2022' },
+    { filename: 'MGMU MTECH CSE ALL JUNE 2022.pdf', dept: 'CSE', sem: 'MTECH ALL', year: '2022' },
+    { filename: 'MGMU MTECH EPS ALL JUNE 2022.pdf', dept: 'EPS', sem: 'MTECH ALL', year: '2022' },
+    { filename: 'MGMU MTECH GEOINFORMATICS ALL JUNE 2022.pdf', dept: 'Geoinformatics', sem: 'MTECH ALL', year: '2022' },
+    { filename: 'MGMU MTECH STRUCTURE ALL JUNE 2022.pdf', dept: 'Structure', sem: 'MTECH ALL', year: '2022' },
+    { filename: 'MGMU MTECH VLSI ES ALL JUNE 2022.pdf', dept: 'VLSI ES', sem: 'MTECH ALL', year: '2022' },
+    { filename: 'MGMU PGDAIML ALL JUNE 2022.pdf', dept: 'PGD AIML', sem: 'ALL', year: '2022' },
+    { filename: 'MGMU SY CHEMICAL ALL JUNE 2022.pdf', dept: 'Chemical', sem: 'SY', year: '2022' },
+    { filename: 'MGMU SY CIVIL ALL JUNE 2022.pdf', dept: 'Civil', sem: 'SY', year: '2022' },
+    { filename: 'MGMU SY CSE ALL JUNE 2022.pdf', dept: 'CSE', sem: 'SY', year: '2022' },
+    { filename: 'MGMU SY EE ALL JUNE 2022.pdf', dept: 'EE', sem: 'SY', year: '2022' },
+    { filename: 'MGMU SY IT ALL JUNE 2022.pdf', dept: 'IT', sem: 'SY', year: '2022' },
+    { filename: 'MGMU SY MECHANICAL ALL JUNE 2022.pdf', dept: 'Mechanical', sem: 'SY', year: '2022' },
+    { filename: 'MGMU SY STATISTICS ALL JUNE 2022.pdf', dept: 'Statistics', sem: 'SY', year: '2022' },
+    { filename: 'MGMY SY ECT ALL JUNE 2022.pdf', dept: 'ECT', sem: 'SY', year: '2022' },
   ];
 
   const sectionStyle = {
@@ -100,51 +82,40 @@ const QuestionPapersPage = () => {
               fontFamily: "Georgia, serif",
             }}
           >
-            PREVIOUS YEAR QUESTION PAPERS
+            PREVIOUS YEAR QUESTION PAPERS (JUNE 2022)
           </h1>
           <p className="text-center mb-4" style={{ fontSize: '1.2rem', color: '#666' }}>
-            Download previous year question papers for exam preparation. Select department and semester.
+            Download previous year question papers. Click to view PDF.
           </p>
-          <Accordion defaultActiveKey="0">
-            {departments.map((dept, deptIndex) => (
-              <Accordion.Item eventKey={deptIndex.toString()} key={deptIndex}>
-                <Accordion.Header style={{ fontWeight: 'bold', color: '#703c19', fontSize: '1.3rem' }}>
-                  {dept.name}
-                </Accordion.Header>
-                <Accordion.Body>
-                  <Table striped bordered hover responsive>
-                    <thead>
-                      <tr style={{ backgroundColor: '#703c19', color: 'white' }}>
-                        <th>Semester</th>
-                        <th>Subject</th>
-                        <th>Year</th>
-                        <th>Download</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {dept.papers.map((paper, index) => (
-                        <tr key={index}>
-                          <td>{paper.semester}</td>
-                          <td>{paper.subject}</td>
-                          <td>{paper.year}</td>
-                          <td>
-                            <Button 
-                              variant="outline-primary" 
-                              href={paper.link} 
-                              size="sm"
-                              target="_blank"
-                            >
-                              PDF
-                            </Button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </Accordion.Body>
-              </Accordion.Item>
-            ))}
-          </Accordion>
+          <Table striped bordered hover responsive className="mb-5">
+            <thead>
+              <tr style={{ backgroundColor: '#703c19', color: 'white' }}>
+                <th>Department/Course</th>
+                <th>Semester</th>
+                <th>Exam</th>
+                <th>Download PDF</th>
+              </tr>
+            </thead>
+            <tbody>
+              {papers.map((paper, index) => (
+                <tr key={index}>
+                  <td>{paper.dept}</td>
+                  <td>{paper.sem}</td>
+                  <td>{paper.year} June ALL</td>
+                  <td>
+                    <Button 
+                      variant="outline-primary" 
+                      href={`/papers/${paper.filename}`} 
+                      size="sm"
+                      target="_blank"
+                    >
+                      📄 Download
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
 
         {/* Right Sidebar */}
@@ -239,4 +210,3 @@ const QuestionPapersPage = () => {
 };
 
 export default QuestionPapersPage;
-

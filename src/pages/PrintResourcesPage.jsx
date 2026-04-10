@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
-import QuickLinks from "../components/QuickLinks";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
 import Footer from "../components/Footer";
@@ -188,7 +187,6 @@ const PrintResourcesPage = () => {
       <Container fluid style={{ boxShadow: '2px 2px 12px #606060', padding: '2rem 0', minHeight: '80vh' }}>
         <Row>
           <Col lg={3}>
-            <QuickLinks />
           </Col>
           <Col lg={9}>
             <h1 className="text-center mb-5" style={{ fontSize: '3rem', color: '#703c19', fontWeight: 'bold' }}>
