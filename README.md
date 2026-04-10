@@ -81,9 +81,11 @@ public/          # Images (logos, gallery photos)
 ```
 
 ## Screenshots
-*(Suggest adding screenshots of home, e-resources, gallery)*
-- Home: ![Home](public/images/newslide.jpg)
-- Gallery: Library photos available at `/gallery`
+
+- Home:<img width="1888" height="911" alt="image" src="https://github.com/user-attachments/assets/7b527d8a-2ead-4482-8d4b-97bff9b1835d" />
+
+- Gallery: <img width="1880" height="915" alt="image" src="https://github.com/user-attachments/assets/0b5da610-a063-48dc-9c55-0e12ac8cc495" />
+`
 
 ## Contributing
 1. Fork the repo.
