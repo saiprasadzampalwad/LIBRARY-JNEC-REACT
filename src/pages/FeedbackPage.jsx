@@ -54,35 +54,50 @@ const FeedbackPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm()) {
-      console.log('Form submitted:', formData);
-      setShowSuccess(true);
-      setFormData({
-        name: '',
-        department: '',
-        regNo: '',
-        section: '',
-        purpose: '',
-        frequency: '',
-        staffBehavior: '',
-        staffKnowledge: '',
-        staffEfficiency: '',
-        staffEffectiveness: '',
-        envCleanliness: '',
-        envLighting: '',
-        envEquipment: '',
-        opac: '',
-        internet: '',
-        circulation: '',
-        reference: '',
-        magazine: '',
-        readingHall: '',
-        sufficiency: '',
-        condition: '',
-        suggestions: '',
-      });
+      try {
+        const res = await fetch("http://localhost:5000/api/feedback", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        setShowSuccess(true);
+        setFormData({
+          name: '',
+          department: '',
+          regNo: '',
+          section: '',
+          purpose: '',
+          frequency: '',
+          staffBehavior: '',
+          staffKnowledge: '',
+          staffEfficiency: '',
+          staffEffectiveness: '',
+          envCleanliness: '',
+          envLighting: '',
+          envEquipment: '',
+          opac: '',
+          internet: '',
+          circulation: '',
+          reference: '',
+          magazine: '',
+          readingHall: '',
+          sufficiency: '',
+          condition: '',
+          suggestions: '',
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
