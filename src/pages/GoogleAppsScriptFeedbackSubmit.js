@@ -3,13 +3,16 @@
 
 export async function submitFeedbackToGoogleScript({ endpointUrl, apiKey, payload }) {
   if (!endpointUrl) throw new Error('Missing Google Apps Script endpointUrl');
-  if (!apiKey) throw new Error('Missing Google Apps Script apiKey');
+  // API key is optional. If omitted/empty, the Apps Script endpoint will accept requests.
+  // (See scripts/GASFeedbackWebApp.js EXPECTED_API_KEY = ''.)
+
 
   const res = await fetch(endpointUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': apiKey,
+      ...(apiKey ? { 'x-api-key': apiKey } : {}),
+
     },
     body: JSON.stringify(payload),
   });

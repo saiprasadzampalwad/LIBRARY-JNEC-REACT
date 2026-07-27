@@ -1,8 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Accordion } from 'react-bootstrap';
+import { Accordion } from 'react-bootstrap';
 import Header from '../components/Header';
 import NavbarComp from '../components/NavbarComp';
 import Footer from '../components/Footer';
+import Sider2 from '../components/Sider2';
 
 const faqs = [
   {
@@ -15,7 +16,7 @@ const faqs = [
   },
   {
     question: '3. How many books can a student borrow?',
-    answer: 'UG Students: 2 books, PG Students: 4 books, Faculty: 6 books. Period: 15 days.'
+    answer: 'UG Students: 2 books, PG Students: 4 books, Faculty: 6 books. Issue Period: 15 days.'
   },
   {
     question: '4. What are the membership fees?',
@@ -27,96 +28,85 @@ const faqs = [
   },
   {
     question: '6. How to use OPAC?',
-    answer: 'Visit https://erp.mgmu.ac.in, login with institutional credentials to search catalogue, reserve books.'
+    answer: 'Visit https://erp.mgmu.ac.in, login with institutional credentials to search catalogue and reserve books.'
   },
   {
     question: '7. What is the fine for overdue books?',
-    answer: 'Rs. 2/- per day per book after due date.'
+    answer: 'Rs. 2/- per day per book after the due date.'
   },
   {
     question: '8. Can I take personal belongings inside?',
-    answer: 'No bags/laptops/mobile phones allowed. Only books/notes. Lockers available.'
+    answer: 'Bags and personal non-library books are not allowed inside the stack area. Lockers are available.'
   },
   {
-    question: '9. Is photocopying allowed?',
-    answer: 'Yes, photocopy service available at nominal rates. Self-service not permitted.'
+    question: '9. Is photocopying service available?',
+    answer: 'Yes, photocopying facility is available at nominal rates in the library.'
   },
   {
-    question: '10. How to suggest book purchase?',
-    answer: 'Fill Requisition Form at circulation counter or email to library staff.'
+    question: '10. How to suggest book purchases?',
+    answer: 'Fill out the Book Requisition Form at the circulation counter or email the library team.'
   },
   {
-    question: '11. Are journals back volumes available?',
-    answer: 'Yes, bound volumes available in Reference Section. Photocopy service for articles.'
+    question: '11. Are journal back-volumes available?',
+    answer: 'Yes, bound back-volumes are available in the Reference Section.'
   },
   {
     question: '12. Is inter-library loan available?',
-    answer: 'Yes, through MGM University libraries and DELNET/INFLIBNET.'
+    answer: 'Yes, through MGM University libraries network and DELNET/INFLIBNET.'
   },
   {
-    question: '13. Contact for help?',
-    answer: 'Email: jneclibrary@gmail.com | Phone: [Contact Number]'
+    question: '13. Who to contact for support?',
+    answer: 'Email: jneclibrary@gmail.com | Phone: 0240-2481433'
   },
 ];
 
 const FAQPage = () => {
-  const sectionStyle = {
-    marginBottom: '2rem',
-    padding: '2rem',
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    backgroundColor: '#f8f9fa',
-  };
-
-  const titleStyle = {
-    color: '#703c19',
-    fontWeight: 'bold',
-    textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-  };
-
   return (
     <>
       <Header />
       <NavbarComp />
-      <Container fluid style={{ boxShadow: '2px 2px 12px #606060', padding: '2rem 0' }}>
-        <Row>
-          <Col lg={12}>
-            <h1 className="text-center mb-5" style={{ 
-              ...titleStyle, 
-              fontSize: '3rem' 
-            }}>
-              FREQUENTLY ASKED QUESTIONS (FAQ)
-            </h1>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Col lg={10}>
-            <div style={sectionStyle}>
-              <Accordion defaultActiveKey="0">
-                {faqs.map((faq, index) => (
-                  <Accordion.Item eventKey={index.toString()} key={index}>
-                    <Accordion.Header style={{ fontWeight: 'bold', color: '#703c19' }}>
+
+      <div className="page-title-banner">
+        FREQUENTLY ASKED QUESTIONS (FAQ)
+      </div>
+
+      <div className="page-container">
+        <div className="page-sidebar">
+          <Sider2 />
+        </div>
+
+        <div className="page-main-content">
+          <div className="scrollable-content-box">
+            <Accordion defaultActiveKey="0" className="custom-accordion">
+              {faqs.map((faq, index) => (
+                <Accordion.Item eventKey={index.toString()} key={index} className="mb-2 border-0 shadow-sm rounded">
+                  <Accordion.Header>
+                    <span style={{ fontWeight: '700', color: '#703c19', fontSize: '14.5px' }}>
                       {faq.question}
-                    </Accordion.Header>
-                    <Accordion.Body style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-                      {faq.answer}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ))}
-              </Accordion>
-            </div>
-            <div className="text-center mt-4">
-              <p style={{ fontSize: '1.1rem', color: '#666' }}>
-                For more questions, contact library staff at circulation desk or email jneclibrary@gmail.com
+                    </span>
+                  </Accordion.Header>
+                  <Accordion.Body style={{ fontSize: '13.5px', color: '#374151', lineHeight: '1.6' }}>
+                    {faq.answer}
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))}
+            </Accordion>
+
+            <div className="text-center mt-3 p-3" style={{ background: "#faf8f5", border: "1px solid #f1ede6", borderRadius: "8px" }}>
+              <p style={{ margin: 0, fontSize: "13.5px", color: "#6b7280" }}>
+                Have more questions? Contact library staff at the circulation desk or email <strong>jneclibrary@gmail.com</strong>
               </p>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+
+      </div>
+
       <Footer />
     </>
   );
 };
 
 export default FAQPage;
+
 

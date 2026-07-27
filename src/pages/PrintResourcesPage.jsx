@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
-import QuickLinks from "../components/QuickLinks";
+import { Card } from "react-bootstrap";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
 import Footer from "../components/Footer";
+import Sider2 from "../components/Sider2";
 
 const PrintResourcesPage = () => {
   const [openKeys, setOpenKeys] = useState({});
@@ -135,42 +135,42 @@ const PrintResourcesPage = () => {
   ];
 
   const renderDropBox = (title, data, id) => (
-    <Card style={{ marginBottom: '1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+    <Card className="modern-card mb-3">
       <Card.Header 
         style={{ 
-          backgroundColor: '#f8f9fa', 
+          backgroundColor: '#faf8f5', 
           cursor: 'pointer', 
-          padding: '12px 16px',
-          fontWeight: 'bold',
+          padding: '12px 18px',
+          fontWeight: '700',
           color: '#703c19',
-          borderBottom: '1px solid #dee2e6',
+          borderBottom: openKeys[id] ? '1px solid #e5e7eb' : 'none',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
         }}
         onClick={() => toggleCategory(id)}
       >
-        {title} 📚
-        <span>{openKeys[id] ? '▲' : '▼'}</span>
+        <span>{title} 📚</span>
+        <span style={{ fontSize: '12px', color: '#6b7280' }}>{openKeys[id] ? '▲' : '▼'}</span>
       </Card.Header>
       {openKeys[id] && (
-        <Card.Body style={{ padding: '16px' }}>
+        <Card.Body style={{ padding: '16px 18px' }}>
           {typeof data === 'object' && !Array.isArray(data) ? (
             Object.entries(data).map(([dept, books]) => (
-              <div key={dept} style={{ marginBottom: '1.5rem', borderLeft: '3px solid #703c19', paddingLeft: '12px' }}>
-                <h6 style={{ color: '#703c19', marginBottom: '8px', fontWeight: 'bold' }}>
+              <div key={dept} style={{ marginBottom: '1.2rem', borderLeft: '3px solid #703c19', paddingLeft: '12px' }}>
+                <h6 style={{ color: '#703c19', marginBottom: '6px', fontWeight: '700', fontSize: '14px' }}>
                   {dept} ({books.length} titles)
                 </h6>
-                <ul style={{ fontSize: '14px', lineHeight: '1.5' }}>
+                <ul style={{ fontSize: '13.5px', color: '#374151', lineHeight: '1.6', margin: 0, paddingLeft: '16px' }}>
                   {books.slice(0, 10).map((book, idx) => (
                     <li key={idx}>{book}</li>
                   ))}
-                  {books.length > 10 && <li style={{ fontStyle: 'italic', color: '#666' }}>...</li>}
+                  {books.length > 10 && <li style={{ fontStyle: 'italic', color: '#6b7280' }}>...</li>}
                 </ul>
               </div>
             ))
           ) : (
-            <ul style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <ul style={{ fontSize: '13.5px', color: '#374151', lineHeight: '1.6', margin: 0, paddingLeft: '16px' }}>
               {data.map((book, idx) => (
                 <li key={idx}>{book}</li>
               ))}
@@ -185,84 +185,67 @@ const PrintResourcesPage = () => {
     <>
       <Header />
       <NavbarComp />
-      <Container fluid style={{ boxShadow: '2px 2px 12px #606060', padding: '2rem 0', minHeight: '80vh' }}>
-        <Row>
-          <Col lg={3}>
-            <QuickLinks />
-          </Col>
-          <Col lg={9}>
-            <h1 className="text-center mb-5" style={{ fontSize: '3rem', color: '#703c19', fontWeight: 'bold' }}>
-              PRINT RESOURCES
-            </h1>
-            
-            {/* Department Holdings Table */}
-            <Card style={{ marginBottom: '2rem', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-              <Card.Header style={{ backgroundColor: '#f8f9fa', borderBottom: '2px solid #703c19', textAlign: 'center' }}>
-                <h4 style={{ color: '#703c19', fontWeight: 'bold', margin: 0 }}>Department-wise Book Holdings</h4>
-              </Card.Header>
-              <Card.Body>
-                <div style={{ overflowX: 'auto' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
-                    <thead>
-                      <tr style={{ backgroundColor: '#d9d9d9' }}>
-                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '60px' }}>Sr. No</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'left', fontWeight: 'bold', minWidth: '140px' }}>Department</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '130px' }}>Required Titles</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '130px' }}>Available Titles</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '140px' }}>Required Volumes</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', minWidth: '140px' }}>Available Volumes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {departmentTableData.map((row, index) => (
-                        <tr key={index} style={{ backgroundColor: row.sr === '' ? '#e9ecef' : index % 2 === 0 ? '#f8f9fa' : 'white' }}>
-                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: row.sr === '' ? 'bold' : '500' }}>
-                            {row.sr || ''}
-                          </td>
-                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'left', fontWeight: row.sr === '' ? 'bold' : '500' }}>
-                            {row.dept}
-                          </td>
-                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center' }}>
-                            {row.reqTitles ? row.reqTitles.toLocaleString() : ''}
-                          </td>
-                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', color: '#28a745' }}>
-                            {row.availTitles ? row.availTitles.toLocaleString() : ''}
-                          </td>
-                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center' }}>
-                            {row.reqVol ? row.reqVol.toLocaleString() : ''}
-                          </td>
-                          <td style={{ border: '1px solid #ddd', padding: '12px 8px', textAlign: 'center', fontWeight: 'bold', color: '#28a745' }}>
-                            {row.availVol ? row.availVol.toLocaleString() : ''}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Card.Body>
-            </Card>
 
-            <h4 style={{ color: '#703c19', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
-              Sample Book Titles (Click to Expand)
+      <div className="page-title-banner">
+        PRINT RESOURCES
+      </div>
+
+      <div className="page-container">
+        <div className="page-sidebar">
+          <Sider2 />
+        </div>
+
+        <div className="page-main-content">
+          <div className="scrollable-content-box">
+            <h4 style={{ color: '#703c19', fontWeight: '700', marginBottom: '16px', borderBottom: '2px solid #703c19', paddingBottom: '6px' }}>
+              Department-wise Book Holdings
             </h4>
 
-            {Object.entries(booksData).map(([mainCategory, data]) => renderDropBox(mainCategory, data, mainCategory.replace(/\\s/g, '')))}
-
-            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-              <h4 style={{ color: '#703c19', fontWeight: 'bold' }}>Access Information</h4>
-              <ul style={{ fontSize: '1.1rem', textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
-                <li>Print resources available in Circulation and Reference sections.</li>
-                <li>Book bank for semester-long loans (2-3 books per student).</li>
-                <li>Total collection: 50,000+ books across all departments.</li>
-                <li>Contact library staff for reservations or recommendations.</li>
-              </ul>
+            <div className="modern-table-responsive">
+              <table className="modern-table">
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: 'center' }}>Sr. No</th>
+                    <th>Department</th>
+                    <th style={{ textAlign: 'center' }}>Req. Titles</th>
+                    <th style={{ textAlign: 'center' }}>Avail. Titles</th>
+                    <th style={{ textAlign: 'center' }}>Req. Volumes</th>
+                    <th style={{ textAlign: 'center' }}>Avail. Volumes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {departmentTableData.map((row, index) => (
+                    <tr key={index} style={{ fontWeight: row.sr === '' ? 'bold' : 'normal', background: row.sr === '' ? '#f6efe9' : undefined }}>
+                      <td style={{ textAlign: 'center' }}>{row.sr || ''}</td>
+                      <td>{row.dept}</td>
+                      <td style={{ textAlign: 'center' }}>{row.reqTitles ? row.reqTitles.toLocaleString() : ''}</td>
+                      <td style={{ textAlign: 'center', fontWeight: '700', color: '#047857' }}>
+                        {row.availTitles ? row.availTitles.toLocaleString() : ''}
+                      </td>
+                      <td style={{ textAlign: 'center' }}>{row.reqVol ? row.reqVol.toLocaleString() : ''}</td>
+                      <td style={{ textAlign: 'center', fontWeight: '700', color: '#047857' }}>
+                        {row.availVol ? row.availVol.toLocaleString() : ''}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </Col>
-        </Row>
-      </Container>
+
+            <h4 style={{ color: '#703c19', fontWeight: '700', marginTop: '24px', marginBottom: '16px', borderBottom: '2px solid #703c19', paddingBottom: '6px' }}>
+              Sample Book Titles Catalogue
+            </h4>
+
+            {Object.entries(booksData).map(([mainCategory, data]) => renderDropBox(mainCategory, data, mainCategory.replace(/\s/g, '')))}
+          </div>
+        </div>
+
+      </div>
+
       <Footer />
     </>
   );
 };
 
 export default PrintResourcesPage;
+

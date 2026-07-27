@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Row, Col, Card, Button, Alert } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
 import Footer from "../components/Footer";
+import Sider2 from "../components/Sider2";
 
 const ENewsPapersPage = () => {
   const newspapers = [
@@ -12,6 +13,7 @@ const ENewsPapersPage = () => {
         { title: "The Times of India", url: "https://timesofindia.indiatimes.com/", desc: "Leading English daily newspaper." },
         { title: "The Indian Express", url: "https://indianexpress.com/", desc: "National English daily with in-depth analysis." },
         { title: "The Hindu", url: "https://www.thehindu.com/", desc: "South India's leading English daily." },
+        { title: "The Economic Times", url: "https://economictimes.indiatimes.com/", desc: "Business-focused English daily." },
         { title: "Hindustan Times", url: "https://www.hindustantimes.com/", desc: "Delhi-based English newspaper." },
       ],
     },
@@ -23,113 +25,56 @@ const ENewsPapersPage = () => {
       ],
     },
     {
-      category: "Regional & Others",
+      category: "Regional & International",
       items: [
-        { title: "BBC News", url: "https://www.bbc.com/news", desc: "International news." },
+        { title: "BBC News", url: "https://www.bbc.com/news", desc: "International news and analysis." },
         { title: "Economic Times", url: "https://economictimes.indiatimes.com/", desc: "Business and economy news." },
       ],
     },
   ];
 
-  const accessInfo = [
-    "Free access to e-newspapers through library links.",
-    "Some newspapers require institutional login.",
-    "Contact library for access issues or print editions.",
-  ];
-
-  const sectionStyle = {
-    marginBottom: "3rem",
-    padding: "2rem",
-    border: "1px solid #ddd",
-    borderRadius: "10px",
-    backgroundColor: "#f8f9fa",
-  };
-
-  const titleStyle = {
-    color: "#703c19",
-    fontWeight: "bold",
-    textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
-  };
-
-  const containerStyle = {
-    boxShadow: "2px 2px 12px #606060",
-    padding: "2rem 0",
-    minHeight: "80vh",
-  };
-
-  const h1Style = {
-    ...titleStyle,
-    fontSize: "3rem",
-  };
-
-  const h3Style = {
-    ...titleStyle,
-    borderBottom: "3px solid #703c19",
-    paddingBottom: "1rem",
-  };
-
-  const cardStyle = {
-    border: "none",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-    transition: "transform 0.2s ease-in-out",
-  };
-
-  const cardTitleStyle = {
-    color: "#703c19",
-    fontWeight: "bold",
-  };
-
-  const buttonStyle = {
-    borderColor: "#703c19",
-    color: "#703c19",
-  };
-
   return (
     <>
       <Header />
       <NavbarComp />
-      <Container fluid style={containerStyle}>
-        <Row>
-          <Col lg={12}>
-            <h1 className="text-center mb-5" style={h1Style}>
-              E-NEWS PAPERS
-            </h1>
-          </Col>
-        </Row>
+      
+      <div className="page-title-banner">
+        E-NEWSPAPERS
+      </div>
 
-        <Row className="justify-content-center">
-          <Col lg={11}>
-            <div style={sectionStyle}>
-              <h4 style={titleStyle}>Access Information</h4>
-              <Alert variant="info">
-                <ul>
-                  {accessInfo.map((info, idx) => (
-                    <li key={idx}>{info}</li>
-                  ))}
-                </ul>
-              </Alert>
-            </div>
+      <div className="page-container">
+        <div className="page-sidebar">
+          <Sider2 />
+        </div>
 
+        <div className="page-main-content">
+          <div className="scrollable-content-box">
             {newspapers.map((section, secIdx) => (
-              <div key={secIdx} style={sectionStyle}>
-                <h3 style={h3Style}>
+              <div key={secIdx} className="mb-4">
+                <h4 style={{ color: "#703c19", fontWeight: "700", borderBottom: "2px solid #703c19", paddingBottom: "6px", marginBottom: "16px" }}>
                   {section.category}
-                </h3>
-                <Row>
+                </h4>
+                <Row className="g-3">
                   {section.items.map((item, idx) => (
-                    <Col md={6} lg={4} key={idx} className="mb-4">
-                      <Card style={cardStyle} className="hover-card">
-                        <Card.Body>
-                          <Card.Title style={cardTitleStyle}>{item.title}</Card.Title>
-                          <Card.Text>{item.desc}</Card.Text>
-                          <Button 
-                            variant="outline-primary" 
-                            href={item.url} 
-                            target="_blank" 
+                    <Col md={6} lg={4} key={idx}>
+                      <Card className="modern-card h-100">
+                        <Card.Body className="d-flex flex-column justify-content-between">
+                          <div>
+                            <Card.Title style={{ color: "#703c19", fontSize: "15px", fontWeight: "700" }}>
+                              {item.title}
+                            </Card.Title>
+                            <Card.Text style={{ fontSize: "13px", color: "#666" }}>
+                              {item.desc}
+                            </Card.Text>
+                          </div>
+                          <Button
+                            variant="primary"
+                            href={item.url}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            style={buttonStyle}
+                            className="btn-primary-custom btn-sm mt-3 w-100"
                           >
-                            Read Now
+                            Read Online 📰
                           </Button>
                         </Card.Body>
                       </Card>
@@ -138,19 +83,21 @@ const ENewsPapersPage = () => {
                 </Row>
               </div>
             ))}
-
-            <div className="text-center mt-5">
-              <p style={{ fontSize: "1.1rem", color: "#666" }}>
-                Stay updated with current affairs through library's e-newspapers collection.
+            <div className="text-center mt-3 p-3" style={{ background: "#faf8f5", border: "1px solid #f1ede6", borderRadius: "8px" }}>
+              <p style={{ margin: 0, fontSize: "13.5px", color: "#6b7280" }}>
+                Stay updated with current affairs and news through the Central Library's e-newspapers portal.
               </p>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+
+      </div>
+
       <Footer />
     </>
   );
 };
 
 export default ENewsPapersPage;
+
 

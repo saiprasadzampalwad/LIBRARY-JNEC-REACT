@@ -1,0 +1,12 @@
+[
+  {"type":"text","text":"***"},
+  {"type":"image","src":"/images/NewAlt.gif","alt":"New","width":71,"height":32,"style":{"verticalAlign":"middle"}},
+  {"type":"text","text":"List of Suggested Engineering Books of Indian Authors & Publishers-"},
+  {"type":"link","href":"#","text":"list-suggested-books-indian-authors-publishers.pdf"},
+  {"type":"text","text":"&nbsp;"},
+  {"type":"text","text":"QUOTES :"},
+  {"type":"quote","text":"ONE BEST BOOK IS EQUAL TO HUNDRED GOOD FRIENDS BUT ONE GOOD FRIEND IS EQUAL TO A LIBRARY. - Dr. A.P.J ABDUL KALAM"},
+  {"type":"quote","text":"\"LIBRARIES ARE THE FOUNDATIONS FOR LEARNING .\" - MARK DAVIS"},
+  {"type":"quote","text":"\"I HAVE ALWAYS IMAGINED THAT PARADISE WILL BE A KIND OF LIBRARY - JORGE LUIS BORGES (1899-1986)"}
+]
+

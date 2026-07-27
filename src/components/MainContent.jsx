@@ -43,25 +43,28 @@ const MainContent = () => {
     );
 
   return (
-
-    <Container className="py-4">
-      <h2 className="mb-4" style={{ color: '#703c19', fontWeight: 'bold' }}>
+    <div className="scrollable-content-box">
+      <h2 className="mb-3" style={{ color: '#703c19', fontWeight: 'bold', fontSize: '22px' }}>
         {data.title}
       </h2>
       <div 
         style={{ 
           whiteSpace: 'pre-wrap', 
-          lineHeight: '1.6', 
-          fontSize: '1rem',
-          backgroundColor: '#f8f9fa',
-          padding: '20px',
+          lineHeight: '1.65', 
+          fontSize: '1.05rem',
+          backgroundColor: '#faf8f5',
+          padding: '18px',
           borderRadius: '8px',
-          borderLeft: '4px solid #703c19'
+          borderLeft: '4px solid #703c19',
+          border: '1px solid #f1ede6',
+          borderLeftWidth: '4px'
         }}
         dangerouslySetInnerHTML={{ __html: data.fullText.replace(/\n/g, '<br>') }}
       />
-    </Container>
+    </div>
   );
+
+
 };
 
 export default MainContent;

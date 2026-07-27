@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import Header from '../components/Header';
 import NavbarComp from '../components/NavbarComp';
 import Footer from '../components/Footer';
-
+import Sider2 from '../components/Sider2';
+import { submitToGoogleSheets } from '../services/googleSheetsSubmit';
 
 const FeedbackPage = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ const FeedbackPage = () => {
     suggestions: '',
   });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -59,69 +61,56 @@ const FeedbackPage = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      try {
-        // Submit to Google Apps Script Web App
-        const { submitFeedbackToGoogleScript } = await import('./GoogleAppsScriptFeedbackSubmit');
+      setIsSubmitting(true);
+      const scriptUrl = import.meta.env.VITE_FEEDBACK_SCRIPT_URL || import.meta.env.VITE_GAS_ENDPOINT_URL || '';
+      await submitToGoogleSheets(scriptUrl, formData);
 
-        const endpointUrl = import.meta.env.VITE_GAS_ENDPOINT_URL;
-        const apiKey = import.meta.env.VITE_GAS_API_KEY;
-
-        if (!endpointUrl) throw new Error('Missing VITE_GAS_ENDPOINT_URL');
-        if (!apiKey) throw new Error('Missing VITE_GAS_API_KEY');
-
-        await submitFeedbackToGoogleScript({
-          endpointUrl,
-          apiKey,
-          payload: formData,
-        });
-
-        setShowSuccess(true);
-
-
-        setFormData({
-          name: '',
-          department: '',
-          regNo: '',
-          section: '',
-          purpose: '',
-          frequency: '',
-          staffBehavior: '',
-          staffKnowledge: '',
-          staffEfficiency: '',
-          staffEffectiveness: '',
-          envCleanliness: '',
-          envLighting: '',
-          envEquipment: '',
-          opac: '',
-          internet: '',
-          circulation: '',
-          reference: '',
-          magazine: '',
-          readingHall: '',
-          sufficiency: '',
-          condition: '',
-          suggestions: '',
-        });
-      } catch (err) {
-        console.error(err);
-      }
+      setIsSubmitting(false);
+      setShowSuccess(true);
+      setFormData({
+        name: '',
+        department: '',
+        regNo: '',
+        section: '',
+        purpose: '',
+        frequency: '',
+        staffBehavior: '',
+        staffKnowledge: '',
+        staffEfficiency: '',
+        staffEffectiveness: '',
+        envCleanliness: '',
+        envLighting: '',
+        envEquipment: '',
+        opac: '',
+        internet: '',
+        circulation: '',
+        reference: '',
+        magazine: '',
+        readingHall: '',
+        sufficiency: '',
+        condition: '',
+        suggestions: '',
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
 
   const ratings = ['Excellent', 'Very Good', 'Good', 'Fair'];
 
   const sectionStyle = {
     marginBottom: '2rem',
     padding: '1.5rem',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    backgroundColor: '#f8f9fa',
+    border: '1px solid #e5e7eb',
+    borderRadius: '10px',
+    backgroundColor: '#faf8f5',
   };
 
   const labelStyle = {
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#703c19',
-    marginBottom: '0.75rem',
+    marginBottom: '0.5rem',
+    fontSize: '13.5px'
   };
 
   const radioGroupStyle = {
@@ -132,28 +121,42 @@ const FeedbackPage = () => {
     <>
       <Header />
       <NavbarComp />
-      <Container fluid style={{ boxShadow: '2px 2px 12px #606060', padding: '2rem 0' }}>
-        <Row>
-          <Col lg={12}>
-            <h1 className="text-center mb-5" style={{ color: '#703c19', fontSize: '2.5rem', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.1)' }}>
-              LIBRARY FEEDBACK FORM
-            </h1>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Col lg={10}>
+
+      <div className="page-title-banner">
+        LIBRARY FEEDBACK FORM
+      </div>
+
+      <div className="page-container">
+        <div className="page-sidebar">
+          <Sider2 />
+        </div>
+
+        <div className="page-main-content">
+          <div className="scrollable-content-box">
+            {showSuccess && (
+              <Alert 
+                variant="success" 
+                onClose={() => setShowSuccess(false)} 
+                dismissible 
+                className="mb-4" 
+                style={{ borderRadius: '8px', borderLeft: '4px solid #16a34a' }}
+              >
+                <Alert.Heading style={{ fontSize: "16px", fontWeight: "700" }}>
+                  ✓ Feedback Submitted Successfully!
+                </Alert.Heading>
+                <p style={{ fontSize: "14px", margin: 0 }}>
+                  Thank you! Your feedback has been submitted successfully. We appreciate your valuable input to improve our library services.
+                </p>
+              </Alert>
+            )}
+
             <Form onSubmit={handleSubmit}>
-              {showSuccess && (
-                <Alert variant="success" onClose={() => setShowSuccess(false)} dismissible className="mb-4" style={{ borderRadius: '10px' }}>
-                  <strong>Thank You!</strong> Your feedback has been submitted successfully. Data logged.
-                </Alert>
-              )}
-
-                <h5 style={{ color: '#703c19', borderBottom: '2px solid #703c19', paddingBottom: '0.5rem' }}>SECTION A: VISITOR DETAILS</h5>
-                <div>
-                  <Row>
-                    <Col md={6}>
-
+              <div style={sectionStyle}>
+                <h5 style={{ color: '#703c19', borderBottom: '2px solid #703c19', paddingBottom: '0.5rem', fontWeight: '700' }}>
+                  SECTION A: VISITOR DETAILS
+                </h5>
+                <Row>
+                  <Col md={6}>
                     <Form.Group className="mb-3">
                       <Form.Label style={labelStyle}>1. Name of Staff/Student <span style={{color: 'red'}}>*</span></Form.Label>
                       <Form.Control name="name" value={formData.name} onChange={handleChange} isInvalid={!!errors.name} style={{ borderRadius: '5px' }} />
@@ -164,6 +167,7 @@ const FeedbackPage = () => {
                     <Form.Group className="mb-3">
                       <Form.Label style={labelStyle}>2. Department <span style={{color: 'red'}}>*</span></Form.Label>
                       <Form.Control name="department" value={formData.department} onChange={handleChange} isInvalid={!!errors.department} style={{ borderRadius: '5px' }} />
+                      <Form.Control.Feedback type="invalid">{errors.department}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
                 </Row>
@@ -172,6 +176,7 @@ const FeedbackPage = () => {
                     <Form.Group className="mb-3">
                       <Form.Label style={labelStyle}>3. Library Registration No <span style={{color: 'red'}}>*</span></Form.Label>
                       <Form.Control name="regNo" value={formData.regNo} onChange={handleChange} isInvalid={!!errors.regNo} style={{ borderRadius: '5px' }} />
+                      <Form.Control.Feedback type="invalid">{errors.regNo}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
                   <Col md={6}>
@@ -184,6 +189,7 @@ const FeedbackPage = () => {
                         <option>Reference Section/Journals</option>
                         <option>Internet/E-Library</option>
                       </Form.Select>
+                      <Form.Control.Feedback type="invalid">{errors.section}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
                 </Row>
@@ -198,10 +204,11 @@ const FeedbackPage = () => {
                         <option>Research Purpose</option>
                         <option>To Access E-Resources</option>
                       </Form.Select>
+                      <Form.Control.Feedback type="invalid">{errors.purpose}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
                   <Col md={6}>
-                    <Form.Group className="mb-4">
+                    <Form.Group className="mb-3">
                       <Form.Label style={labelStyle}>6. Frequency of Library Visit <span style={{color: 'red'}}>*</span></Form.Label>
                       <Form.Select name="frequency" value={formData.frequency} onChange={handleChange} isInvalid={!!errors.frequency} style={{ borderRadius: '5px' }}>
                         <option value="">Select Frequency</option>
@@ -210,13 +217,16 @@ const FeedbackPage = () => {
                         <option>Monthly</option>
                         <option>Once in Two Months</option>
                       </Form.Select>
+                      <Form.Control.Feedback type="invalid">{errors.frequency}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
                 </Row>
               </div>
 
               <div style={sectionStyle}>
-                <h5 style={{ color: '#703c19', borderBottom: '2px solid #703c19', paddingBottom: '0.5rem' }}>SECTION B: FEEDBACK (Help us evaluate our services)</h5>
+                <h5 style={{ color: '#703c19', borderBottom: '2px solid #703c19', paddingBottom: '0.5rem', fontWeight: '700' }}>
+                  SECTION B: FEEDBACK (Help us evaluate our services)
+                </h5>
                 <h6 style={labelStyle}>A) STAFF:</h6>
                 <Row>
                   <Col md={6}>
@@ -362,35 +372,27 @@ const FeedbackPage = () => {
                 </Row>
 
                 <h6 style={labelStyle}>E) Suggestions:</h6>
-                <Form.Group className="mb-4">
+                <Form.Group className="mb-3">
                   <Form.Label style={labelStyle}>Do you have any suggestion on how we can serve you better?</Form.Label>
-                  <Form.Control as="textarea" rows={5} name="suggestions" value={formData.suggestions} onChange={handleChange} style={{ borderRadius: '5px', resize: 'vertical' }} />
+                  <Form.Control as="textarea" rows={4} name="suggestions" value={formData.suggestions} onChange={handleChange} style={{ borderRadius: '5px' }} />
                 </Form.Group>
               </div>
 
-              <p className="text-center mb-4" style={{ fontSize: '0.95rem', color: '#666', fontStyle: 'italic' }}>
-                You may also send your questions, Comments & Suggestion to <a href="mailto:jneclibrary@gmail.com" style={{ color: '#703c19', fontWeight: 'bold' }}>jneclibrary@gmail.com</a>
-              </p>
-
-              <Button type="submit" className="w-100 btn-lg" style={{ 
-                backgroundColor: '#703c19', 
-                borderColor: '#703c19', 
-                fontSize: '1.2rem', 
-                fontWeight: 'bold', 
-                padding: '1rem', 
-                borderRadius: '10px',
-                textTransform: 'uppercase'
-              }}>
-                Submit Feedback
+              <Button type="submit" disabled={isSubmitting} className="w-100 btn-primary-custom btn-lg py-3">
+                {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
               </Button>
             </Form>
-          </Col>
-        </Row>
-        <div style={{ height: '100px' }} /> {/* spacing */}
-      </Container>
+          </div>
+        </div>
+
+      </div>
+
       <Footer />
     </>
   );
 };
 
 export default FeedbackPage;
+
+
+

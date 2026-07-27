@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import NavbarComp from "../components/NavbarComp";
 import Footer from "../components/Footer";
-import QuickLinks from "../components/QuickLinks";
+import Sider2 from "../components/Sider2";
+import { FaFilePdf, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-// Fallback if the static index cannot be loaded.
 const fallbackJournalYears = [
   { label: "Journals Subscribed for the Year - 2024", pdfLink: "LIST OF JOURNALS 2024.pdf" },
   { label: "Journals Subscribed for the Year - 2019", pdfLink: "NATIONAL PRINT JOURNALS 2019.pdf" },
@@ -25,9 +25,6 @@ export default function JournalsPage() {
         if (!res.ok) throw new Error(`Failed to load /journals-index.json: ${res.status}`);
         const data = await res.json();
 
-        // Accept:
-        // 1) { "2024": "LIST OF JOURNALS 2024.pdf", ... }
-        // 2) [{ label: "...", pdfLink: "..." }, ...]
         const normalized = Array.isArray(data)
           ? data
           : Object.entries(data || {}).map(([label, pdfLink]) => ({ label, pdfLink }));
@@ -54,119 +51,75 @@ export default function JournalsPage() {
       <Header />
       <NavbarComp />
 
-      <div
-        style={{
-          display: "flex",
-          maxWidth: 1180,
-          margin: "0 auto",
-          padding: "22px 16px",
-          gap: 22,
-          alignItems: "flex-start",
-        }}
-      >
-        <div style={{ flex: 1 }}>
-          <h1
-            style={{
-              textAlign: "center",
-              fontSize: 20,
-              fontWeight: "bold",
-              color: "#222",
-              marginBottom: 16,
-              letterSpacing: 1,
-              fontFamily: "Georgia, serif",
-            }}
-          >
-            NEW ARRIVALS - JOURNALS
-          </h1>
-          <p style={{ fontSize: 11, marginBottom: 10, color: "#555" }}>
-            Click on the buttons to open the collapsible content.
-          </p>
+      <div className="page-title-banner">
+        NEW ARRIVALS - JOURNALS
+      </div>
 
-          {items.map((item, i) => (
-            <div key={item.pdfLink || i} style={{ marginBottom: 4 }}>
-              <div
-                onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-                style={{
-                  background: "#d9d9d9",
-                  padding: "10px 14px",
-                  cursor: "pointer",
-                  fontSize: 13,
-                  color: "#333",
-                  borderRadius: 2,
-                  userSelect: "none",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <span>{item.label}</span>
-                <span style={{ fontSize: 11, color: "#666" }}>{openIndex === i ? "▲" : "▼"}</span>
-              </div>
+      <div className="page-container">
+        <div className="page-sidebar">
+          <Sider2 />
+        </div>
 
-              {openIndex === i && item.pdfLink && (
+        <div className="page-main-content">
+          <div className="scrollable-content-box">
+            <p style={{ fontSize: 13, marginBottom: 16, color: "#6b7280" }}>
+              Click on any journal subscription year below to view and download the official PDF list.
+            </p>
+
+            {items.map((item, i) => (
+              <div key={item.pdfLink || i} className="modern-card mb-3" style={{ overflow: "hidden" }}>
                 <div
+                  onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
                   style={{
-                    padding: "8px 14px",
-                    background: "#f9f9f9",
-                    borderTop: "1px solid #ddd",
+                    background: openIndex === i ? "#f6efe9" : "#ffffff",
+                    padding: "14px 18px",
+                    cursor: "pointer",
+                    fontSize: "14.5px",
+                    fontWeight: "700",
+                    color: "#703c19",
+                    userSelect: "none",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    transition: "background 0.2s ease"
                   }}
                 >
-                  <a
-                    href={`/journals/${encodeURIComponent(item.pdfLink)}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: "#8B4513", fontSize: 12, textDecoration: "underline" }}
-                  >
-                    📄 {item.pdfLink}
-                  </a>
+                  <span>{item.label}</span>
+                  <span>{openIndex === i ? <FaChevronUp size={14} color="#703c19" /> : <FaChevronDown size={14} color="#9ca3af" />}</span>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
 
-        <div style={{ width: 195, flexShrink: 0 }}>
-          <QuickLinks />
-
-          <div
-            style={{
-              background: "linear-gradient(170deg, #eaf7e8 0%, #c5e8b8 100%)",
-              border: "2px solid #5aaa3a",
-              borderRadius: 3,
-              padding: "14px 10px 12px",
-              textAlign: "center",
-            }}
-          >
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: "bold",
-                color: "#276010",
-                fontStyle: "italic",
-                marginBottom: 8,
-                lineHeight: 1.3,
-              }}
-            >
-              This is your planet
-            </div>
-            <div style={{ fontSize: 52, lineHeight: 1, marginBottom: 6 }}>🌍</div>
-            <div
-              style={{
-                fontSize: 18,
-                fontWeight: "900",
-                color: "#276010",
-                letterSpacing: 1,
-                fontStyle: "italic",
-              }}
-            >
-              go green!
-            </div>
+                {openIndex === i && item.pdfLink && (
+                  <div
+                    style={{
+                      padding: "14px 18px",
+                      background: "#faf8f5",
+                      borderTop: "1px solid #e5e7eb",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px"
+                    }}
+                  >
+                    <FaFilePdf color="#dc2626" size={18} />
+                    <a
+                      href={`/journals/${encodeURIComponent(item.pdfLink)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: "#703c19", fontSize: "14px", fontWeight: "600", textDecoration: "underline" }}
+                    >
+                      View / Download PDF: {item.pdfLink}
+                    </a>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
+
       </div>
 
       <Footer />
     </>
   );
 }
+
 

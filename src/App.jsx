@@ -10,6 +10,7 @@ const NavbarCompLazy = lazy(() => import('./components/NavbarComp'));
 const SliderLazy = lazy(() => import('./components/Slider'));
 const TopMarqueeLazy = lazy(() => import('./components/TopMarquee'));
 const SidebarLazy = lazy(() => import('./components/Sidebar'));
+const Sider2Lazy = lazy(() => import('./components/Sider2'));
 const MainContentLazy = lazy(() => import('./components/MainContent'));
 const FooterLazy = lazy(() => import('./components/Footer'));
 
@@ -41,13 +42,17 @@ function App() {
               <NavbarCompLazy />
               <SliderLazy />
               <TopMarqueeLazy />
-              <Container fluid>
-                <Row>
-                  <Col sm={3}>
+              <Container fluid="xl" className="mb-4 mt-2 px-2">
+
+                <Row className="g-3">
+
+                  <Col lg={3} md={4}>
                     <SidebarLazy />
                   </Col>
-                  <Col sm={9}>
-                    <MainContentLazy />
+                  <Col lg={9} md={8}>
+                    <div className="page-main-content">
+                      <MainContentLazy />
+                    </div>
                   </Col>
                 </Row>
               </Container>

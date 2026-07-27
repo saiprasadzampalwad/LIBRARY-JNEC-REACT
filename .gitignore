@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Environment variables
+.env
+.env.local
+.env.production
+
 # Ignore local scripts (e.g., Google Apps Script)
 scripts/
 
