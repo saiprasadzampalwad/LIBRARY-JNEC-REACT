@@ -5,9 +5,9 @@ import { FaChevronRight } from 'react-icons/fa';
 const quickLinksData = [
   { name: 'Open Education Resource', url: '/e-resources' },
   { name: 'E-News papers', url: '/e-news-papers' },
-  { name: 'Ask A Librarian Service', url: '/ask-librarian' },
+  { name: 'Ask A Librarian Service', url: 'https://form.123formbuilder.com/1637444' },
   { name: 'New Arrivals - Books', url: '/new-arrival-books' },
-  { name: 'Library Feedback Form', url: '/feedback' },
+  { name: 'Library Feedback Form', url: 'https://docs.google.com/forms/d/e/1FAIpQLSf-BBgsr9iXtJbZAkqV_X-dPrleTYuoyftLHnYmg7O3TWN9tw/viewform' },
   { name: 'New Arrivals - Journals', url: '/journals' },
   { name: "Preparation - Question Papers", url: '/question-papers' },
   { name: "FAQ's about Library", url: '/faq' },
